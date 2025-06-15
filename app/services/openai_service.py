@@ -14,7 +14,7 @@ async def summarize_text(text: str, summary_length: SummaryLength) -> str:
     )
 
     max_tokens_map = {
-        "short": 100,
+        "short": 150,
         "medium": 200,
         "long": 350,
     }
