@@ -13,7 +13,7 @@ It is fully containerized, cloud-ready, and built with modern software developme
 
 #### Tech Stack
 
-- **Backend**: FastAPI (async) + Pydantic + OpenAI LLMs + OCR
+- **Backend**: FastAPI (async) + Pydantic + OpenAI LLMs + OCR (AWS Textract)
 - **Frontend**: React + Next.js
 - **Deployment**: AWS (Lambda, S3, EC2, API Gateway), Docker, Kubernetes
 - **CI/CD**: GitHub Actions or GitLab CI with multi-environment pipelines
