@@ -1,0 +1,56 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Editor/IDE settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Test and coverage
+.pytest_cache/
+coverage/
+*.cover
+*.coverage
+.cache/
+.tox/
+
+# Node.js dependencies and build
+client/node_modules/
+client/build/
+client/dist/
+client/.cache/
+
+# Environment and config
+.env
+.env.*
+*.env
+
+# Git
+.git/
+.gitignore
+
+# Docker
+docker-compose.override.yml
+
+# Misc
+*.sqlite3
+*.db
+*.bak
+*.swp
+*.tmp
