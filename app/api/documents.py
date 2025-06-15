@@ -3,8 +3,10 @@ from fastapi.responses import JSONResponse
 from tempfile import NamedTemporaryFile
 import shutil
 from pathlib import Path
+
 from app.services.textract_service import extract_text_from_file
 from app.services.s3_service import upload_file_to_s3
+from app.services.openai_service import summarize_text
 
 router = APIRouter()
 
@@ -24,12 +26,15 @@ async def upload_document(file: UploadFile = File(...)):
         text = extract_text_from_file(tmp_path)
         s3_url = upload_file_to_s3(tmp_path, file.filename)
 
+        summary = await summarize_text(text)
+
         return JSONResponse(content={
             "filename": file.filename,
             "extracted_text": text,
+            "summary": summary,
             "s3_url": s3_url,
         })
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Extraction failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Processing failed: {str(e)}")
     finally:
         tmp_path.unlink(missing_ok=True)
