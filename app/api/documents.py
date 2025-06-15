@@ -4,6 +4,7 @@ from tempfile import NamedTemporaryFile
 import shutil
 from pathlib import Path
 from app.services.textract_service import extract_text_from_file
+from app.services.s3_service import upload_file_to_s3
 
 router = APIRouter()
 
@@ -21,7 +22,13 @@ async def upload_document(file: UploadFile = File(...)):
 
     try:
         text = extract_text_from_file(tmp_path)
-        return JSONResponse(content={"filename": file.filename, "extracted_text": text})
+        s3_url = upload_file_to_s3(tmp_path, file.filename)
+
+        return JSONResponse(content={
+            "filename": file.filename,
+            "extracted_text": text,
+            "s3_url": s3_url,
+        })
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Extraction failed: {str(e)}")
     finally:
