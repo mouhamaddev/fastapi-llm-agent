@@ -1,23 +1,28 @@
 import os
 import openai
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-print(f"ISSS OPENAI_API_KEY is set? {'Yes' if openai.api_key else 'No'}")
-print(os.getenv("OPENAI_API_KEY"))
+from app.utils import SummaryLength
 
-async def summarize_text(text: str) -> str:
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+async def summarize_text(text: str, summary_length: SummaryLength) -> str:
     prompt = (
         "You are a helpful assistant. "
-        "Please provide a concise summary of the following document text:\n\n"
+        f"Please provide a **{summary_length.value}** summary of the following document text:\n\n"
         f"{text}\n\n"
         "Summary:"
     )
 
+    max_tokens_map = {
+        "short": 150,
+        "medium": 200,
+        "long": 350,
+    }
+
     response = await openai.ChatCompletion.acreate(
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=200,
+        max_tokens=max_tokens_map[summary_length.value],
         temperature=0.3,
     )
-    summary = response.choices[0].message.content.strip()
-    return summary
+    return response.choices[0].message.content.strip()
