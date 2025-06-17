@@ -15,6 +15,7 @@ Fully containerized, cloud-ready, and built with software development practices.
 
 - Backend: FastAPI (Dockerized) + Redis + API Gateway + OpenAI LLMs + OCR (AWS Textract)
 - Frontend: Next.js deployed on S3 + CDN (CloudFront)
+- Database: AWS DynamoDB
 - CI/CD: GitHub Actions
 - Task Queue: Celery + Lambda + WebSockets _(not implemented yet)_
 
@@ -26,8 +27,8 @@ Fully containerized, cloud-ready, and built with software development practices.
 - Retrieve processed result
 - Create a hash of the document to enable Redis caching in memory (one week)
 - API throttling and rate limiting
-- Auth + JWT _(not implemented yet)_
-- History and older uploads tracking with their summaries _(not implemented yet)_
+- Auth + JWT
+- History and older uploads tracking with their summaries
 
 
 ## About This Project
