@@ -1,0 +1,43 @@
+name: Deploy FastAPI on EC2
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy on EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: SSH into EC2 and deploy
+        run: |
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+            set -e
+
+            cd ~/fastapi-summarizer || {
+              git clone git@github.com:${{ github.repository }} ~/fastapi-summarizer
+              cd ~/fastapi-summarizer
+            }
+            git fetch origin
+            git reset --hard origin/main
+
+            echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" > .env
+
+            docker-compose down --remove-orphans
+            docker-compose pull || true
+            docker-compose build --no-cache
+            docker-compose up -d
+          EOF
