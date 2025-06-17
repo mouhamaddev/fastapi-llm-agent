@@ -30,20 +30,8 @@ jobs:
             if [ ! -d fastapi-llm-agent ]; then
               git clone https://github.com/${{ github.repository }} fastapi-llm-agent
             fi
-            if [ -f /home/ubuntu/.env ]; then
-              echo "===== /home/ubuntu/.env contents ====="
-              cat /home/ubuntu/.env
-              echo "======================================"
-            else
-              echo "⚠️  /home/ubuntu/.env does not exist!"
-            fi
             cp /home/ubuntu/.env /home/ubuntu/fastapi-llm-agent/.env || true
             cd /home/ubuntu/fastapi-llm-agent
-            echo "===== fastapi-llm-agent/.env contents ====="
-            cat .env || echo "⚠️  .env file missing in project directory"
-            echo "==========================================="
-            source .env
-            echo "AWS_CREDENTIALS_PATH is: $AWS_CREDENTIALS_PATH"
             git fetch origin
             git reset --hard origin/main
 
