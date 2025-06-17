@@ -13,3 +13,4 @@ httpx==0.25.1
 aioresponses==0.7.6
 moto[all]==4.2.13
 python-dotenv==1.0.0
+starlette==0.27.0

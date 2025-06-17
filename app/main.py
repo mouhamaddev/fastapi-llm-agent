@@ -9,6 +9,7 @@ app.include_router(api_router)
 
 origins = [
     "http://localhost:3000",
+    "http://next-client-88389272.s3-website-us-east-1.amazonaws.com/"
 ]
 
 app.add_middleware(
