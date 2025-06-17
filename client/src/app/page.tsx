@@ -89,7 +89,7 @@ export default function Home() {
         formData.append("file", file);
 
         const response = await fetch(
-          `http://localhost:8000/documents/upload?summary_length=${summaryLength}`,
+          `http://3.87.146.102:8000/documents/upload?summary_length=${summaryLength}`,
           {
             method: "POST",
             headers: {
