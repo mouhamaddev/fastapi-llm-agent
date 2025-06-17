@@ -30,6 +30,7 @@ jobs:
             if [ ! -d fastapi-llm-agent ]; then
               git clone https://github.com/${{ github.repository }} fastapi-llm-agent
             fi
+            cp .env fastapi-llm-agent/.env || true
             cd fastapi-llm-agent
             git fetch origin
             git reset --hard origin/main
