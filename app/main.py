@@ -9,8 +9,10 @@ app.include_router(api_router)
 
 origins = [
     "http://localhost:3000",
-    "http://next-client-88389272.s3-website-us-east-1.amazonaws.com/"
+    "http://next-client-88389272.s3-website-us-east-1.amazonaws.com",
+    "https://d31yw2qefd409z.cloudfront.net",
 ]
+
 
 app.add_middleware(
     CORSMiddleware,
