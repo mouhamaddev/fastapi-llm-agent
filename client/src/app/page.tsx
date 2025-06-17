@@ -89,7 +89,7 @@ export default function Home() {
         formData.append("file", file);
 
         const response = await fetch(
-          `http://3.87.146.102:8000/documents/upload?summary_length=${summaryLength}`,
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/documents/upload?summary_length=${summaryLength}`,
           {
             method: "POST",
             headers: {
