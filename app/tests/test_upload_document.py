@@ -6,7 +6,7 @@ from fastapi import status
 from app.main import app
 from unittest.mock import AsyncMock, patch
 
-from app.utils import SummaryLength
+from app.common import SummaryLength
 
 ALLOWED_TYPES = [".pdf", ".docx", ".jpg", ".jpeg", ".png"]
 
