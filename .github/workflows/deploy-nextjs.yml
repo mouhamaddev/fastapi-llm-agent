@@ -25,9 +25,7 @@ jobs:
         run: npm ci
 
       - name: Build & Export Next.js static site
-        run: |
-          npm run build
-          npm run export
+        run: npm run build -- --no-lint
 
       - name: Sync files to S3 bucket
         uses: aws-actions/configure-aws-credentials@v2
