@@ -19,6 +19,7 @@ from app.common import ALLOWED_EXTENSIONS, SummaryLength
 router = APIRouter()
 
 @router.post("/upload")
+@router.post("/upload/")
 @limiter.limit("5/minute")
 async def upload_document(
     request: Request,

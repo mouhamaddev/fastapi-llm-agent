@@ -27,7 +27,7 @@ jobs:
 
       - name: Build & Export Next.js static site
         env:
-          NEXT_PUBLIC_API_BASE_URL: http://3.87.146.102:8000
+          NEXT_PUBLIC_API_BASE_URL: https://xx3rbutff1.execute-api.us-east-1.amazonaws.com
         run: npm run build -- --no-lint
 
       - name: Sync files to S3 bucket
