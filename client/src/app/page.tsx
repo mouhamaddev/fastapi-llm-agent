@@ -110,7 +110,7 @@ export default function Home() {
         setMessage({ type: "success", text: "Summary generated successfully!" });
         setIsUploading(false);
       } catch (err: any) {
-        setMessage({ type: "warning", text: "Something went wrong :(" });
+        setMessage({ type: "warning", text: "Something went wrong." });
         setDisplayedText("");
         setIsUploading(false);
       }
