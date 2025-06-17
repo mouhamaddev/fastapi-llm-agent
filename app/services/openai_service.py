@@ -1,7 +1,7 @@
 import os
 import openai
 
-from app.utils import SummaryLength
+from app.common import SummaryLength
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -14,7 +14,7 @@ async def summarize_text(text: str, summary_length: SummaryLength) -> str:
     )
 
     max_tokens_map = {
-        "short": 100,
+        "short": 150,
         "medium": 200,
         "long": 350,
     }

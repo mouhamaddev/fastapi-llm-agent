@@ -1,22 +1,27 @@
 import hashlib
 from app.services.redis_service import redis_client
 import json
+from fastapi import Request
 
 from fastapi import APIRouter, File, UploadFile, HTTPException, Query
 from fastapi.responses import JSONResponse
 from tempfile import NamedTemporaryFile
 from pathlib import Path
 
+from app.utils.limiter import limiter
+
 from app.services.textract_service import extract_text_from_file
 from app.services.s3_service import upload_file_to_s3
 from app.services.openai_service import summarize_text
 
-from app.utils import ALLOWED_EXTENSIONS, SummaryLength
+from app.common import ALLOWED_EXTENSIONS, SummaryLength
 
 router = APIRouter()
 
 @router.post("/upload")
+@limiter.limit("5/minute")
 async def upload_document(
+    request: Request,
     file: UploadFile = File(...),
     summary_length: SummaryLength = Query("medium", description="Choose summary length: short, medium, or long")
 ):
