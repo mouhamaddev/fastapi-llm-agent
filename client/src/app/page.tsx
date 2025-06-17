@@ -141,7 +141,7 @@ export default function Home() {
         </div>
       )}
 
-      <div className="max-w-6xl w-full bg-white rounded-lg shadow-lg p-8 flex gap-8">
+      <div className="max-w-6xl w-full bg-white rounded-lg shadow-lg p-4 sm:p-6 md:p-8 flex flex-col md:flex-row gap-4 md:gap-8">
         <div
           ref={leftSectionRef}
           className="flex-1 border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col justify-center items-center cursor-pointer hover:border-blue-500 transition-colors"
