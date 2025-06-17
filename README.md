@@ -3,22 +3,20 @@ A FastAPI microservice that parses documents, processes them with an LLM, and re
 
 ## Live Demo
 
-Check out the live demo [here]().
+Check out the live demo [here](https://d31yw2qefd409z.cloudfront.net/).
 
 ## Overview
 
-This project is a full-stack, LLM-integrated document processing system built with FastAPI and React. It enables users to upload documents (PDFs, DOCX, images..), automatically parse and clean the content, and extract summaries or insights using LLM such as OpenAI.
+This project is a full-stack, LLM-integrated document processing system built with FastAPI and Next.js. It enables users to upload documents (PDFs, DOCX, images..), automatically parse and clean the content using AWS Textract, and extract summaries using OpenAI LLMs.
 
-It is fully containerized, cloud-ready, and built with modern software development practices — ideal for AI agents, enterprise NLP workflows, or intelligent dashboards.
+Fully containerized, cloud-ready, and built with software development practices.
 
 #### Tech Stack
 
-- Backend: FastAPI (async) + Pydantic + OpenAI LLMs + OCR (AWS Textract)
-- Frontend: React + Next.js
-- Deployment: AWS (Lambda, S3, EC2, API Gateway), Docker, Kubernetes
-- CI/CD: GitHub Actions or GitLab CI with multi-environment pipelines
-- Load Balancer: Nginx
-- Caching & Task Queue: Redis, Celery
+- Backend: FastAPI (Dockerized) + Redis + API Gateway + OpenAI LLMs + OCR (AWS Textract)
+- Frontend: Next.js deployed on S3 + CDN (CloudFront)
+- CI/CD: GitHub Actions
+- Task Queue: Celery + Lambda + WebSockets _(not implemented yet)_
 
 #### Features
 
@@ -26,36 +24,14 @@ It is fully containerized, cloud-ready, and built with modern software developme
 - Parse & clean text from uploaded docs
 - Send cleaned text to LLM for summary
 - Retrieve processed result
-- Create a hash of the document to enable caching in memory
+- Create a hash of the document to enable Redis caching in memory (one week)
+- API throttling and rate limiting
+- Auth + JWT _(not implemented yet)_
+- History and older uploads tracking with their summaries _(not implemented yet)_
 
-## Getting Started
-
-Follow these steps to run the project locally:
-
-### Prerequisites
-
-* Docker & Docker Compose installed
-* AWS credentials
-* OpenAI API key
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/mouhamaddev/fastapi-llm-agent.git
-cd fastapi-llm-agent
-```
-
-### Running with Docker
-
-```bash
-docker-compose up --build
-```
-
-This will start backend and frontend services. Access the frontend at `http://localhost:3000`.
 
 ## About This Project
 
-I created this project as a personal challenge to learn FastAPI (which was completely new to me) and Next.js (which I had only limited experience with before). I built this project within one week, trying to make it an MVP that actually works.
+I created this project as a personal challenge to learn FastAPI (which was completely new to me) and Next.js. I built this project within one week, trying to make it an MVP that actually works.
 
 Thanks so much for taking the time to read this and check out my project! ❤️
