@@ -5,6 +5,10 @@ A FastAPI microservice that parses documents, processes them with an LLM, and re
 
 Check out the live demo [here](https://d31yw2qefd409z.cloudfront.net/).
 
+
+## High Level Architecture
+![System Architecture Diagram](SystemArchitecture.png)
+
 ## Overview
 
 This project is a full-stack, LLM-integrated document processing system built with FastAPI and Next.js. It enables users to upload documents (PDFs, DOCX, images..), automatically parse and clean the content using AWS Textract, and extract summaries using OpenAI LLMs.
