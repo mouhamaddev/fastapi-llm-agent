@@ -29,8 +29,7 @@ router = APIRouter()
 async def upload_document(
     request: Request,
     file: UploadFile = File(...),
-    summary_length: SummaryLength = Query("medium", description="Choose summary length: short, medium, or long"),
-    current_user: UserInDB = Depends(get_current_user)
+    summary_length: SummaryLength = Query("medium", description="Choose summary length: short, medium, or long")
 ):
     ext = Path(file.filename).suffix.lower()
     if ext not in ALLOWED_EXTENSIONS:
