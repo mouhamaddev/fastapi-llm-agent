@@ -420,7 +420,7 @@ export default function Home() {
                 Cancel
               </button>
               <button
-                onClick={handleLogin}
+                onClick={() => handleLogin()}
                 disabled={loginLoading}
                 className="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition cursor-pointer flex items-center justify-center min-w-[100px]"
               >
