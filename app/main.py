@@ -1,12 +1,17 @@
+import asyncio
+import os
+
+import boto3
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.services.user_documents import get_current_user
 from slowapi.errors import RateLimitExceeded
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from fastapi.responses import JSONResponse
+from slowapi import _rate_limit_exceeded_handler
 
 from app.utils.limiter import limiter
 
 from app.api import api_router
+
 
 app = FastAPI(title="FastAPI LLM Agent")
 

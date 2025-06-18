@@ -31,4 +31,4 @@ services:
       - REDIS_URL=redis://redis:6379
     volumes:
       - ./app:/app/app
-      - /home/ubuntu/.aws:/root/.aws:ro
+      - C:/Users/winte/.aws:/root/.aws:ro

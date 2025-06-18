@@ -15,3 +15,5 @@ moto[all]==4.2.13
 python-dotenv==1.0.0
 starlette==0.27.0
 slowapi==0.1.6
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
