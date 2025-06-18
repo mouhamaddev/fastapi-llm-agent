@@ -29,6 +29,9 @@ export default function Home() {
   const [isTyping, setIsTyping] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  const [registerLoading, setRegisterLoading] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
 
   const [containerHeight, setContainerHeight] = useState(0);
   const leftSectionRef = useRef<HTMLDivElement>(null);
@@ -77,6 +80,9 @@ export default function Home() {
       setMessage({ type: "warning", text: "Please fill username and password." });
       return;
     }
+  
+    setRegisterLoading(true);
+  
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000"}/auth/register`, {
         method: "POST",
@@ -90,25 +96,24 @@ export default function Home() {
       }
   
       await res.json();
-  
       setMessage({ type: "success", text: "Registered successfully!" });
-  
       await handleLogin(false);
-  
       setShowRegister(false);
-      
-      // reloadAfterSeconds(1.5);
     } catch (err: any) {
       setMessage({ type: "warning", text: err.message || "Registration error" });
+    } finally {
+      setRegisterLoading(false);
     }
   }
-  
 
   async function handleLogin(showText: boolean = true) {
     if (!authUsername || !authPassword) {
       setMessage({ type: "warning", text: "Please fill username and password." });
       return;
     }
+
+    setLoginLoading(true);
+
     try {
       const params = new URLSearchParams();
       params.append("username", authUsername);
@@ -141,6 +146,8 @@ export default function Home() {
       // reloadAfterSeconds(1.5);
     } catch (err: any) {
       setMessage({ type: "warning", text: err.message || "Login error" });
+    } finally {
+      setLoginLoading(false);
     }
   }
 
@@ -232,6 +239,7 @@ export default function Home() {
           {
             method: "POST",
             headers: {
+              ...(token ? { Authorization: `Bearer ${token}` } : {}),
               accept: "application/json",
             },
             body: formData,
@@ -340,9 +348,33 @@ export default function Home() {
               </button>
               <button
                 onClick={handleRegister}
-                className="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition cursor-pointer"
+                disabled={registerLoading}
+                className="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition cursor-pointer flex items-center justify-center min-w-[100px]"
               >
-                Register
+                {registerLoading ? (
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    />
+                  </svg>
+                ) : (
+                  "Register"
+                )}
               </button>
             </div>
           </div>
@@ -389,9 +421,33 @@ export default function Home() {
               </button>
               <button
                 onClick={handleLogin}
-                className="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition cursor-pointer"
+                disabled={loginLoading}
+                className="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition cursor-pointer flex items-center justify-center min-w-[100px]"
               >
-                Login
+                {loginLoading ? (
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    />
+                  </svg>
+                ) : (
+                  "Login"
+                )}
               </button>
             </div>
           </div>

@@ -17,7 +17,6 @@ Fully containerized, cloud-ready, and built with software development practices.
 - Frontend: Next.js deployed on S3 + CDN (CloudFront)
 - Database: AWS DynamoDB
 - CI/CD: GitHub Actions
-- Task Queue: Celery + Lambda + WebSockets _(not implemented yet)_
 
 #### Features
 
@@ -28,11 +27,13 @@ Fully containerized, cloud-ready, and built with software development practices.
 - Create a hash of the document to enable Redis caching in memory (one week)
 - API throttling and rate limiting
 - Auth + JWT
-- History and older uploads tracking with their summaries
 
+#### Feature Work
+- Task Queue: Celery + Lambda + WebSockets
+- History and older uploads tracking with their summaries
 
 ## About This Project
 
-I created this project as a personal challenge to learn FastAPI (which was completely new to me) and Next.js. I built this project within one week, trying to make it an MVP that actually works.
+I created this project as a personal challenge to learn FastAPI (which was completely new to me) and Next.js. I built this project within four days during my free time, trying to make it an MVP that actually works.
 
 Thanks so much for taking the time to read this and check out my project! ❤️
