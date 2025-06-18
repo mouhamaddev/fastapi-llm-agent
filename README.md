@@ -1,6 +1,8 @@
 # fastapi-llm-agent
 A FastAPI microservice that parses documents, processes them with an LLM, and returns structured insights
 
+![Demo.gif](Demo.gif)
+
 ## Live Demo
 
 Check out the live demo [here](https://d31yw2qefd409z.cloudfront.net/).
